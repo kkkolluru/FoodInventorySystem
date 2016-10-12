@@ -1,0 +1,26 @@
+﻿<form id="frmSales">
+    <div class="form-group">
+        <label for="txtSaleDateTime">Sale Date</label>
+        <input type="text" placeholder="Sale date of this product may spoil." disabled ="disabled" id="txtSaleDateTime" name="txtSaleDateTime" class="form-control date-picker" />
+    </div>
+    <div class="form-group">
+        <label for="txtProductDescription">Description</label>
+        <textarea class="form-control" id="txtProductDescription" disabled="disabled"  name="txtProductDescription" rows="3" placeholder="Type in the description of the product here."></textarea>
+    </div>
+    <div class="form-group">
+        <label for="txtAmountOfUnits">Number Of Units</label>
+        <input type="text" placeholder="Type in the number of Units to be sold." required id="txtAmountOfUnits" name="txtAmountOfUnits" class="form-control" />
+        <small id="txtAmountOfUnitsHelp" class="form-text text-muted">Type in the number of items sold</small>
+    </div>
+    <div class="form-group">
+        <label for="txtDiscount">Discount</label>
+        <input type="text" placeholder="Type in the discount if any." required id="txtDiscount" name="txtDiscount" class="form-control" />
+        <small id="txtDiscountHelp" class="form-text text-muted">Type in the discount if any.</small>
+    </div>
+  
+    <div class="form-group">
+        <label for="txtPaymentType">Payment Type</label>
+        <input type="text" placeholder="Type in the payment type (Credit/ Debit/ Cash/ Check)." required id="txtPaymentType" name="txtPaymentType" class="form-control" />
+        <small id="txtPaymentTypeHelp" class="form-text text-muted">Type in the payment type (Credit/ Debit/ Cash/ Check).</small>
+    </div>
+</form>

@@ -1,0 +1,10 @@
+CREATE TABLE [dbo].[Sales](
+	[ProductID] [int] NOT NULL,
+	[PurchaseDate] [datetime] NULL,
+	[NumberOfUnits] [int] NULL,
+	[Discount] [int] NULL,
+	[TypeofPayment] [varchar](50) NULL
+	FOREIGN KEY ([ProductID]) REFERENCES [dbo].[Products]([ProductID])
+) 
+
+GO
