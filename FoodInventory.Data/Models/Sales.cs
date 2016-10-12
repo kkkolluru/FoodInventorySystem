@@ -29,7 +29,7 @@ public partial class Sales
     public string Discount { get; set; }
 
     public string PaymentType { get; set; }
-
-}
+        public DateTime SaleDate { get; set; }
+    }
 
 }

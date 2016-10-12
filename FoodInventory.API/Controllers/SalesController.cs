@@ -15,12 +15,13 @@ namespace FoodInventory.API.Controllers
         private UnitOfWork _unitOfWork = new UnitOfWork();
 
         [HttpPost]
-        public HttpResponseMessage Post([FromBody] FoodInventory.Data.Models.DTOs.SalesDTO productSold)
+        public HttpResponseMessage Post([FromBody] FoodInventory.Data.Models.DTOs.SalesDTO productSold, [FromBody] FoodInventory.Data.Models.DTOs.ProductDTO products
+            )
         {
             try
             {
                 var messageToReturn = "";
-                var productToEdit = _unitOfWork.ProductRepository.Get().Where(p => p.ID == productSold.ID).FirstOrDefault();
+                var productToEdit = _unitOfWork.SalesRepository.Get().Where(p => p.Id == productSold.ID).FirstOrDefault();
                 if (productToEdit == null)
                 {
                     return Request.CreateResponse(HttpStatusCode.BadRequest, "The product (" + productSold.Name + ") with ID (" + productSold.ID + ") does not exist.");
@@ -28,12 +29,19 @@ namespace FoodInventory.API.Controllers
                 else
                 {
                     //Edit this product.
-                    productSold.NumberOfUnits = productSold.NumberOfUnits;
-                    productSold.SaleDate = DateTime.Now;
-                    productSold.PaymentType = productSold.PaymentType;
-                    _unitOfWork.SalesRepository.Sell(productSold);
-                    _unitOfWork.Save();
-                    messageToReturn = "Item Sold (" + productSold.Name + ") with ID (" + productSold.ID + ").";
+                    if (products.UnitsAvailable > productSold.NumberOfUnits)
+                    {
+
+                        productToEdit.NumberOfUnits = productSold.NumberOfUnits.ToString();
+                        productToEdit.SaleDate = DateTime.Now;
+                        productToEdit.PaymentType = productSold.PaymentType;
+                        _unitOfWork.SalesRepository.Sell(productToEdit);
+                        _unitOfWork.Save();
+                        messageToReturn = "Item Sold (" + productSold.Name + ") with ID (" + productSold.ID + ").";
+                    }
+                    else
+                        messageToReturn = "Items -"+ productSold.ID + " Limited Quantity Available " ;
+
                 }
 
 
